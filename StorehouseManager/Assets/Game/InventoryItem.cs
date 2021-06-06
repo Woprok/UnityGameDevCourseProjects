@@ -2,10 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,
+    IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    public ItemDefinition Item;
     internal InventorySlot Owner = null;
-    private CanvasGroup CanvasGroup;
+    public InventoryItemTooltip ItemTooltip;
+    public CanvasGroup CanvasGroup;
 
     // Its quite easy to add additional effects like highlight on OnBeginDrag.
     // We can find all objects of specified type GameObject.FindObjectsOfType<InventorySlot>().Where(slot => slot is SOMETHING);
@@ -13,7 +16,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void Start()
     {
-        CanvasGroup = GetComponent<CanvasGroup>();
         Owner = GetComponentInParent<InventorySlot>();
         Owner.CurrentItem = this;
     }
@@ -41,5 +43,31 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         this.transform.SetParent(Owner.transform);
         this.transform.position = Owner.transform.position;
         CanvasGroup.blocksRaycasts = true;
+    }
+
+
+    private bool IsDown = false;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ItemTooltip.ShowTooltip(Item);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!IsDown)
+            ItemTooltip.HideTooltip();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        IsDown = true;
+        ItemTooltip.ShowTooltip(Item);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        IsDown = false;
+        ItemTooltip.HideTooltip();
     }
 }

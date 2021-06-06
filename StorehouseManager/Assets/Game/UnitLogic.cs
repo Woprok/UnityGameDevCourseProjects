@@ -1,13 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = System.Random;
 
 [Serializable]
 public class UnitPath
 {
     public GameObject[] StartToEndRoute;
+    public float StartWaitTimeInSeconds = 3;
+    public float DesetinationWaitTimeInSeconds = 3;
 }
 
+//TODO refactor to task based path scheduling
 public class UnitLogic : MonoBehaviour
 {
     /// <summary>
@@ -24,10 +28,10 @@ public class UnitLogic : MonoBehaviour
     public GameObject Wizard;
     public GameObject Warrior;
 
+    public UnityEvent OnPathFinished;
+
     private readonly Random random = new Random(DateTime.Now.Second);
     private UnitPath selectedPath = null;
-    //private void ToInvisible() => GetComponent<Renderer>().enabled = true;
-    //private void ToVisible() => GetComponent<Renderer>().enabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -45,17 +49,41 @@ public class UnitLogic : MonoBehaviour
 
     private void FollowPath()
     {
+        if (isStartWaiting)
+        {
+            currentWaitTime += Time.deltaTime;
+            if (currentWaitTime > selectedPath.StartWaitTimeInSeconds)
+                isStartWaiting = false;
+            else
+                return;
+        }
+
         if (transform.position == selectedPath.StartToEndRoute[currentTarget].transform.position)
         {
             OnPositionReached();
         }
 
+        if (isDestinationWaiting)
+        {
+            currentWaitTime += Time.deltaTime;
+            if (currentWaitTime > selectedPath.DesetinationWaitTimeInSeconds)
+                isDestinationWaiting = false;
+            else
+                return;
+        }
+
+        if (selectedPath == null)
+            return;
+
         var next = CalculateTarget();
         transform.position = Vector3.MoveTowards(transform.position, next.Item1, next.Item2);
     }
 
+    private float currentWaitTime = 0;
     private int currentTarget = 0;
     private bool isGoingOnAdventure = true;
+    private bool isDestinationWaiting = false;
+    private bool isStartWaiting = false;
     private void OnPositionReached()
     {
         // change next target
@@ -68,6 +96,8 @@ public class UnitLogic : MonoBehaviour
         if (isGoingOnAdventure && currentTarget >= selectedPath.StartToEndRoute.Length)
         {
             isGoingOnAdventure = false;
+            isDestinationWaiting = true;
+            currentWaitTime = 0;
             currentTarget = selectedPath.StartToEndRoute.Length - 1;
         }
 
@@ -89,12 +119,13 @@ public class UnitLogic : MonoBehaviour
         selectedPath = PathsToDestinations[random.Next(PathsToDestinations.Length)];
         currentTarget = 0;
         isGoingOnAdventure = true;
-        //ToVisible();
+        isStartWaiting = true;
+        currentWaitTime = 0;
     }
 
     private void FinishPath()
     {
+        OnPathFinished.Invoke();
         selectedPath = null;
-        //ToInvisible();
     }
 }

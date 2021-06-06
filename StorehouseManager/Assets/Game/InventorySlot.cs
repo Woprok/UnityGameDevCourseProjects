@@ -4,9 +4,16 @@ using UnityEngine.EventSystems;
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
     internal InventoryItem CurrentItem = null;
+    public ItemTypeAcceptance CanAccept = ItemTypeAcceptance.Any;
+
+    public bool IsFree => CurrentItem == null;
 
     public void OnDrop(PointerEventData eventData)
     {
+        // Can take items from drop ?
+        if (CanAccept == ItemTypeAcceptance.None)
+            return;
+        
         // Accept if empty.
         if (CurrentItem != null)
             return;
@@ -15,7 +22,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         if (inventoryItem == null)
             return;
 
-        // we can add more conditions here like  if (slotType == dragItem.TypeOfItem)
+
+        if (!CanAccept.CanAccept(inventoryItem.Item.Type))
+            return;
+
         inventoryItem.Owner.CurrentItem = null;
         inventoryItem.Owner = this;
         CurrentItem = inventoryItem;
