@@ -25,7 +25,7 @@ Requirements:
 			- Shields
 			- Magical
 			- Potion
-		- Calculate reputation gain as: 
+		- Calculate reputation gain from storing as: 
 			ItemLevelScore = ItemLevel / MaxItemLevel
 			TypeRarityScore = TypeReputation * RarityReputation
 			ItemScore = (1 + ItemLevelScore) * TypeRarityScore;
