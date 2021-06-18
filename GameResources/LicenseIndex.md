@@ -1,7 +1,6 @@
-Background.png - Received from Pali map generator.
+Background.png - Received from friend Pavel, created by his map generator.
 Cursors & UI - Kenney's UI Adventure Pack, Interface Pack
 Graphics - Kenney's RTS Medieval 2d Assets
-
-
-quests as tutorial
-craft is upgrade or new item if not base item provided
+Clock.png - Kenney's Platformer Assets Buildings
+starGold.png - Kenney's Physics Assets
+GameIcons - Game-Icons.Net
