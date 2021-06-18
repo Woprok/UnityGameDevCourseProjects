@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b32125c97b411449b3df14e5152234, type: 3}
+  m_Name: Pirate Hook
+  m_EditorClassIdentifier:
+  Icon: {fileID: 21300000, guid: 2f27906eca2408b45b7696d0c4601787, type: 3}
+  Name: Pirate Hook
+  Description: Yarrr.
+  Type: 4
+  Rarity: 25
+  SetTags:
+  - Pirate
+  Behaviour: 1
+  BehaviourMinValue: 1
+  BehaviourCurrentValue: 1
+  BehaviourMaxValue: 5

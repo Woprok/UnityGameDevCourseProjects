@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b32125c97b411449b3df14e5152234, type: 3}
+  m_Name: Old Shepherd Crook
+  m_EditorClassIdentifier:
+  Icon: {fileID: 21300000, guid: b49daace6f11e15468678616d62eccc9, type: 3}
+  Name: Old Shepherd Crook
+  Description: Pure old man, they robbed him again. I should return to old man.
+  Type: 0
+  Rarity: 25
+  SetTags: []
+  Behaviour: 0
+  BehaviourMinValue: 1
+  BehaviourCurrentValue: 1
+  BehaviourMaxValue: 10

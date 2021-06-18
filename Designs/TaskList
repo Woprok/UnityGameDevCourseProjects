@@ -1,0 +1,120 @@
+ToDo Task List:
+
+Requirements:
+- MainMenu
+	- Play
+	- Quit
+	- Score
+- Loot
+	- Slots
+	- Loot Generation
+		- Loot is generated once a party reaches town.
+		- If there is no place to store loot => generate game over.
+		- Each Type and Rarity has spawn chance
+			- First is determined Rarity
+			- Then Type
+			- After X items next is guaranteed to have that quality
+			- If multiple items are shared at this stage, highest rarity is evaluated first
+- Storehouse
+	- Slots
+	- Storehouse Store
+		- Accepts 
+			- Jewel
+			- Weapon
+			- Armor
+			- Shields
+			- Magical
+			- Potion
+		- Calculate reputation gain as: 
+			ItemLevelScore = ItemLevel / MaxItemLevel
+			TypeRarityScore = TypeReputation * RarityReputation
+			ItemScore = (1 + ItemLevelScore) * TypeRarityScore;
+			TagBonusCollection = 1 + 0.2 * eachOtherTagItem
+			FinalItemScore = ItemScore * Max of TagBonuses
+			UniqueBonus = UniqueTypes * 0.1 + UniqueItems
+			FinalScore = SUM(FinalItemScore) * ( UniqueBonus )
+- Town
+	- Slots
+	- Shop
+		- Sell Price by Rarity * (Level + StackCount) * TypeValue%
+			- Jewel 80%
+			- Weapon 40%
+			- Armor 60%
+			- Shields %60
+			- Magical 100%
+			- Potion 25%
+			- Junk 10%
+			- Ingredient 75%
+			- Part 150%
+		- Buy
+			- Random Color Pinata, transforms to item of same quality as pinata
+			- RingBox transforms to Jewel
+			- Unidentified potion transforms to potion
+			- chest transforms to any item
+			- unlocked chest transforms to 1 - 4 items if space available.			
+	- Artisan
+		- Item Upgrade Calculation
+			- Rarity does not change.
+			- Common is worth 25
+			- Rare is worth 50
+			- Epic is worth 100
+			- Legendary is worth 250
+			- Artifact is worth 1000
+			- Item Level Min 0
+			- Item Exp Per Level 100
+			- Item Level Max 10
+			- Item Max Level Exp 1000	
+		- Offense Items 
+			-> 100% effectivity for Weapons
+			-> 50% effectivity for Jewel
+			-> 25% effectivity for Armor, Shields, Magical
+		- Defense Items 
+			-> 100% effectivity for Armor, Shields
+			-> 50% effectivity for Jewel
+			-> 25% effectivity for Weapon, Magical
+		- Magical Items 
+			-> 100% effectivity for Magical
+			-> 75% effectivity for Jewel
+			-> 25% effectivity for Weapons, Armor, Shields
+	- Quests (OR)
+		- Quest Rewards
+			- Split Party x3 (to 4 members)
+	- Expansions
+		- Buy Loot Slots
+		- Buy Store Slots
+- Slots
+	- Types
+		- IncomingLoot
+		- Storehouse
+		- StoreArea
+		- Shop
+		- Quest
+		- ArtisanIngredient
+		- ArtisanTargetResult
+- Items
+	- Types
+		- Jewel
+		- Weapon
+		- Armor
+		- Shields
+		- Magical
+		- Potion		
+		- Junk
+		- Ingredient
+		- Part
+	- Rarities 
+		- Common
+		- Rare
+		- Epic
+		- Legendary
+		- Artifact
+	- Item Stacking
+	- Item Upgrading
+	- Item as Container
+	- Set Items
+		- Set Collection
+			- Each Set has entry and amount of items in it.
+	- Tooltip
+- Sounds (XR)
+- Effects (XR)
+- Graphics (XR)

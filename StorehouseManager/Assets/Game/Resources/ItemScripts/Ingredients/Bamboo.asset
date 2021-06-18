@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b32125c97b411449b3df14e5152234, type: 3}
+  m_Name: Bamboo
+  m_EditorClassIdentifier:
+  Icon: {fileID: 21300000, guid: 803c2b332b90bc54f8d1ee1eb0fe927f, type: 3}
+  Name: Bamboo
+  Description: 
+  Type: 2
+  Rarity: 0
+  SetTags:
+  - Defense
+  Behaviour: 0
+  BehaviourMinValue: 1
+  BehaviourCurrentValue: 1
+  BehaviourMaxValue: 10
